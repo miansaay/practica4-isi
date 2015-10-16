@@ -47,15 +47,9 @@
 	{{> addList}}
 	<ul>
 		{{#each list}}
-			<li><a href="{{pathFor route='listPage'}}">{{name}}</a>		{{> listItem}}</li>
+			<li><a href="{{pathFor route='listPage'}}">{{name}}</a></li>
 		{{/each}}
 	</ul>
-</template>
-
-<!-- Plantilla creada por mi, no tiene en cuenta naaaada de nada simplenente agrega una X
-	como enlace para poder borrar una lista ya creada -->
-<template name="listItem">
-	[<a href="#" class="delete-list">X</a>]
 </template>
 
 <template name="listPage">

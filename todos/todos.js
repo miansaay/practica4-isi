@@ -96,19 +96,6 @@ if(Meteor.isClient){
     }
   });
 
-  // Creado por mi, solo pido la confirmacion en una ventana
-  // y si aceptan, llamo a la funcion creada por mi
-  Template.listItem.events({
-    'click .delete-list': function(event){
-      event.preventDefault();
-      var documentId = this._id;
-      var confirm = window.confirm("Borrar esta lista?");
-      if(confirm){
-        Meteor.call('removeList', documentId);
-      }
-    }
-  });
-
   Template.todoItem.events({
     'click .delete-todo': function(event){
       event.preventDefault();
@@ -346,19 +333,5 @@ if(Meteor.isServer){
       }
       Todos.remove(data);
     },
-
-    // Creado por mi, claramente hay que mejorar la redireccion y posiblemente
-    // indicar que borre lo que contiene la lista, de manera ciclica
-    'removeList': function(documentId){
-      var currentUser = Meteor.userId();
-      var data = {
-        _id: documentId,
-        createdBy:currentUser
-      }
-      if(!currentUser){
-        throw new Meteor.Error("not-logged-in", "You're not-logged-in");
-      }
-      Lists.remove(data);
-    }
   });
 }
